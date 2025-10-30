@@ -64,7 +64,7 @@ public class DevicesController : ControllerBase
             var existingDevice = await _context.UserDevices.FirstOrDefaultAsync(d => d.FcmToken == fakeToken);
             if (existingDevice == null)
             {
-                 _context.UserDevices.Add(tempDevice);
+                _context.UserDevices.Add(tempDevice);
                 await _context.SaveChangesAsync();
             }
 
@@ -79,7 +79,8 @@ public class DevicesController : ControllerBase
         {
             // This is the most important part for debugging.
             // If the key is wrong, the error will be caught here.
-            return BadRequest(new { 
+            return BadRequest(new
+            {
                 message = "Dry run failed. There is an issue with your Firebase configuration.",
                 error = ex.Message,
                 firebaseErrorCode = ex.MessagingErrorCode?.ToString()
@@ -87,7 +88,8 @@ public class DevicesController : ControllerBase
         }
         catch (FirebaseException ex)
         {
-            return BadRequest(new { 
+            return BadRequest(new
+            {
                 message = "An unexpected Firebase error occurred during the dry run.",
                 error = ex.Message
             });
@@ -103,4 +105,4 @@ public class DevicesController : ControllerBase
             }
         }
     }
-} 
+}

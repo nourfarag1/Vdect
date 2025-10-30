@@ -68,7 +68,7 @@ namespace Vedect.Controllers
             foreach (var cam in cameras)
             {
                 var result = new GetUserCamerasRequest();
-
+                result.Id =cam.Id;
                 result.CameraName = cam.CameraName;
                 result.StreamUrl = cam.StreamUrl;
 
